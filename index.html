@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valentine's Day Request 💖</title>
+    <style>
+      /* Reset and base styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(135deg, #ffd6e8 0%, #ffb3d9 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      /* Main container */
+      .container {
+        text-align: center;
+        padding: 20px;
+        max-width: 600px;
+        width: 100%;
+      }
+
+      /* Romantic text styling */
+      .romantic-text {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #c2185b;
+        margin-bottom: 50px;
+        line-height: 1.4;
+        animation: fadeIn 0.8s ease-in-out;
+      }
+
+      /* Buttons container */
+      .buttons-container {
+        display: flex;
+        gap: 30px;
+        justify-content: center;
+        flex-wrap: wrap;
+        position: relative;
+        min-height: 100px;
+      }
+
+      /* Base button styling */
+      .btn {
+        padding: 15px 40px;
+        font-size: 1.3rem;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-weight: bold;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        user-select: none;
+      }
+
+      /* Yes button */
+      .btn-yes {
+        background: linear-gradient(135deg, #ff4081 0%, #f50057 100%);
+        color: white;
+        position: relative;
+        z-index: 10;
+      }
+
+      .btn-yes:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(245, 0, 87, 0.4);
+      }
+
+      .btn-yes:active {
+        transform: scale(0.95);
+      }
+
+      /* No button - made hard to click */
+      .btn-no {
+        background: linear-gradient(135deg, #ffb3ba 0%, #ffc2c7 100%);
+        color: #666;
+        position: fixed;
+        transition: all 0.3s ease-out;
+        z-index: 9;
+        /* Hover and focus states are handled by JavaScript */
+      }
+
+      /* Hidden elements (shown after Yes is clicked) */
+      .celebration {
+        display: none;
+        animation: fadeIn 0.8s ease-in-out;
+      }
+
+      .celebration-gif {
+        width: 300px;
+        max-width: 90%;
+        margin: 20px auto;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        animation: bounceIn 0.6s ease-out;
+      }
+
+      .celebration-message {
+        font-size: 2rem;
+        color: #c2185b;
+        font-weight: bold;
+        margin-top: 30px;
+        animation: slideUp 0.6s ease-out;
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes bounceIn {
+        0% {
+          transform: scale(0.3);
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        70% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(30px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      /* Responsive design */
+      @media (max-width: 768px) {
+        .romantic-text {
+          font-size: 1.8rem;
+          margin-bottom: 40px;
+        }
+
+        .btn {
+          padding: 12px 30px;
+          font-size: 1.1rem;
+        }
+
+        .celebration-message {
+          font-size: 1.5rem;
+        }
+
+        .celebration-gif {
+          width: 250px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .romantic-text {
+          font-size: 1.5rem;
+          margin-bottom: 30px;
+        }
+
+        .btn {
+          padding: 10px 25px;
+          font-size: 1rem;
+        }
+
+        .buttons-container {
+          gap: 20px;
+          min-height: 80px;
+        }
+
+        .celebration-message {
+          font-size: 1.3rem;
+        }
+
+        .celebration-gif {
+          width: 200px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Initial content: romantic text and buttons -->
+      <div class="initial-content">
+        <h1 class="romantic-text">Hi Selbander, will you be my val 💖</h1>
+
+        <div class="buttons-container">
+          <button class="btn btn-yes" id="yesBtn">Yes ❤️</button>
+          <button class="btn btn-no" id="noBtn">No 😅</button>
+        </div>
+      </div>
+
+      <!-- Celebration content: shown after Yes is clicked -->
+      <div class="celebration" id="celebration">
+        <img
+          src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWplcmxkaGp1YmtnaTRld2htb3ZidWtkZmR0dnF6dHp1a2RlYzhncyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lMameLIF8voLu8HxWV/giphy.gif"
+          alt="Celebration"
+          class="celebration-gif"
+        />
+        <p class="celebration-message">Yaaay! 💕 You just made my day!</p>
+      </div>
+    </div>
+
+    <script>
+      // Get button elements
+      const yesBtn = document.getElementById("yesBtn");
+      const noBtn = document.getElementById("noBtn");
+      const initialContent = document.querySelector(".initial-content");
+      const celebration = document.getElementById("celebration");
+
+      // Configuration
+      const BUTTON_ESCAPE_DISTANCE = 100; // pixels - distance at which button moves away
+      const BUTTON_ESCAPE_DISTANCE_TOUCH = 120; // slightly larger for touch devices
+
+      /**
+       * Generate random position within visible screen bounds
+       * Ensures the button stays fully visible on screen
+       */
+      function getRandomPosition() {
+        const padding = 60; // padding from screen edges
+        const buttonWidth = 120; // approximate button width
+        const buttonHeight = 50; // approximate button height
+
+        const maxX = window.innerWidth - buttonWidth - padding;
+        const maxY = window.innerHeight - buttonHeight - padding;
+
+        const minX = padding;
+        const minY = padding;
+
+        const randomX = Math.random() * (maxX - minX) + minX;
+        const randomY = Math.random() * (maxY - minY) + minY;
+
+        return { x: randomX, y: randomY };
+      }
+
+      /**
+       * Move the No button to a random position
+       */
+      function moveNoButton() {
+        const position = getRandomPosition();
+        noBtn.style.left = position.x + "px";
+        noBtn.style.top = position.y + "px";
+      }
+
+      /**
+       * Calculate distance between two points
+       */
+      function getDistance(x1, y1, x2, y2) {
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+      }
+
+      /**
+       * Handle mouse move - move button if user gets too close
+       */
+      document.addEventListener("mousemove", (e) => {
+        const noBtnRect = noBtn.getBoundingClientRect();
+        const buttonCenterX = noBtnRect.left + noBtnRect.width / 2;
+        const buttonCenterY = noBtnRect.top + noBtnRect.height / 2;
+
+        const distance = getDistance(
+          e.clientX,
+          e.clientY,
+          buttonCenterX,
+          buttonCenterY,
+        );
+
+        // Move button if cursor gets too close
+        if (distance < BUTTON_ESCAPE_DISTANCE) {
+          moveNoButton();
+        }
+      });
+
+      /**
+       * Handle touch move - move button if user gets too close
+       * Works for mobile and touch devices
+       */
+      document.addEventListener(
+        "touchmove",
+        (e) => {
+          // Get the first touch point
+          const touch = e.touches[0];
+          const noBtnRect = noBtn.getBoundingClientRect();
+          const buttonCenterX = noBtnRect.left + noBtnRect.width / 2;
+          const buttonCenterY = noBtnRect.top + noBtnRect.height / 2;
+
+          const distance = getDistance(
+            touch.clientX,
+            touch.clientY,
+            buttonCenterX,
+            buttonCenterY,
+          );
+
+          // Move button if touch gets too close
+          if (distance < BUTTON_ESCAPE_DISTANCE_TOUCH) {
+            moveNoButton();
+          }
+        },
+        { passive: true },
+      ); // passive: true for better performance
+
+      /**
+       * Handle Yes button click
+       * Hide buttons, show celebration
+       */
+      yesBtn.addEventListener("click", () => {
+        // Hide initial content with fade out
+        initialContent.style.animation = "fadeOut 0.5s ease-in-out";
+        setTimeout(() => {
+          initialContent.style.display = "none";
+          celebration.style.display = "block";
+        }, 300);
+      });
+
+      /**
+       * Prevent No button from being clicked
+       * Instead, move it away when user tries
+       */
+      noBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        moveNoButton();
+      });
+
+      /**
+       * Handle No button hover/focus
+       * Move away when user tries to interact
+       */
+      noBtn.addEventListener("mouseenter", () => {
+        moveNoButton();
+      });
+
+      noBtn.addEventListener("focus", () => {
+        moveNoButton();
+      });
+
+      // Initialize No button position
+      moveNoButton();
+
+      // Add fade-out animation to stylesheet
+      const style = document.createElement("style");
+      style.textContent = `
+            @keyframes fadeOut {
+                from {
+                    opacity: 1;
+                }
+                to {
+                    opacity: 0;
+                }
+            }
+        `;
+      document.head.appendChild(style);
+    </script>
+  </body>
+</html>
