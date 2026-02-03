@@ -223,6 +223,14 @@
     </div>
 
     <script>
+      // Get name from query parameters with default fallback
+      const urlParams = new URLSearchParams(window.location.search);
+      const personName = urlParams.get("name") || "Selbander";
+
+      // Update the romantic text with the person's name
+      const romanticTextElement = document.querySelector(".romantic-text");
+      romanticTextElement.textContent = `Hi ${personName}, will you be my val 💖`;
+
       // Get button elements
       const yesBtn = document.getElementById("yesBtn");
       const noBtn = document.getElementById("noBtn");
